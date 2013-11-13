@@ -9,7 +9,6 @@
 // closure for strict mode code.
 (function strict() {
 	"use strict";
-
 	
 	// demo plugin for jQuery.
 	;(function ($) {
@@ -20,7 +19,6 @@
 		} else {
 			console.log("isStrict is already defined for jQuery");
 		}
-		
 	})(jQuery);
 	
 	
@@ -49,7 +47,6 @@
 		})();
 	};
 
-	
 	/**
 	 * Timer utility function. Logs run times to console.log 
 	 */

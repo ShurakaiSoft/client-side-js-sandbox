@@ -1,0 +1,55 @@
+<!doctype html>
+<head>
+<meta charset="UTF-8">
+<title>Long Calculation</title>
+<style>
+body {
+	width:80em;
+	margin:0 auto;
+}
+header {
+	padding:1em;
+	background-color:brown;
+}
+button {
+	padding: .5em;
+	margin: 1em;
+	width: 10em;
+	border-radius:.5em;
+	box-shadow: 0 0 .5em;
+}
+.statusBar {
+	background-color: yellow;
+	padding: .25em;
+	border: solid black .1em;
+	width: 30em;
+}
+#clock {
+	float:right;
+}
+
+</style>
+<body>
+	<header>Long Calculation<div id="clock">No JavaScript</div></header>
+	<section id="sync">
+		<button>sync</button>
+		<div class="statusBar">
+			&nbsp;
+		</div>	
+	</section>
+	<section id="async">
+		<button>async</button>
+		<div class="statusBar">
+			&nbsp;
+		</div>	
+	</section>
+	<section id="asyncTs">
+		<button>async TS</button>
+		<div class="statusBar">
+			&nbsp;
+		</div>	
+	</section>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/long-calc.js"></script>
+</body>
+</head>

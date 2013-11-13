@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Strict Mode Tester</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+
+
+$(function () {
+	'use strict';
+	
+	;(function ($) {
+		if (typeof $.isStrict === 'undefined') {
+			$.isStrict = function () {
+				return (function () { return !this;})();
+			};
+		} else {
+			console.log("isStrict is already defined for jQuery");
+		}
+	})(jQuery);
+
+	var text = {
+		"true": 'This browser is capable of running "strict" mode JavaScript',
+		"false": "This browser doesn't understand \"strict\" mode JavaScript"
+	};
+
+	$('p').hide();
+	$('button').click(function () {
+		$(this).hide();
+		$('p').show().html(text["" + $.isStrict()]);
+	});
+});
+</script>
+</head>
+<body>
+<h1>Test for Strict Mode</h1>
+<button>Test Now</button>
+<p></p>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Blow the Stack</title>
+<style>
+html {
+	height:100%;
+	margin:0;
+	background-color:white;
+}
+body {
+	height:100%;
+	width:78em;
+	margin:0 auto;
+	padding:1em;
+	background-color:#333;
+}
+button {
+	width:5em;
+	margin:1em 0;
+}
+#content {
+	width:100%;
+	height:100%;
+	color:#FFF;
+}
+#output {
+	width:auto;
+	padding:.5em;
+	margin:1em 0;
+	border-radius:.25em;
+	background-color:yellow;
+	box-shadow:0 0 .5em yellow;
+	color:#333;
+}
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+	(function strict() {
+		"use strict";
+		var iterations = 10000; // to blow the stack 
+		
+		function recursiveLoop(i) {
+			if (i >= iterations) {
+				$("#output").html(["done at ", i, " calls"].join(''));
+			} else {
+				recursiveLoop(i += 1);	// tail recursion...
+			}
+		}
+	
+		$(function () {
+			$("button").click(function () { 
+				$("#output").html(["processing ", iterations, " calls..."].join(''));
+				setTimeout(function () {
+					recursiveLoop(0);
+				}, 50);
+			});
+		});
+		
+	}());
+</script>
+</head>
+	<body>
+	<div id="content">
+		<h1>Blow the Stack - recursive function calls</h1>
+		<p>This demonstrates that too much recursion will blow the stack,
+		whereupon bad things can happen.</p>
+		<button>run</button>
+		<div id="output">&nbsp;</div>
+	</div>
+</body>
+</html>

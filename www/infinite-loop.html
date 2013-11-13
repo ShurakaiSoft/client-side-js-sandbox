@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+$(function () {
+	'use strict';
+	
+	/**
+	 * Counts from 0, for 1 second and prints the final number.<br>
+	 * <br>
+	 * This function uses an event to send a "stop" message after 1 second.
+	 * However the counting loop never yields, thus preventing the "stop" event
+	 * from executing.
+	 */
+	function work() {
+		var runable = true;
+		var i = 0;
+		
+		// setup event to stop counting after 1 second.
+		setTimeout(function () {
+			runable = false;
+		}, 1000);	// stop after 1 second.
+
+		// start counting
+		while (runable) {
+			i++;
+		}
+		
+		// show result
+		$('div').html("It got to " + i);	// never called!
+	}
+	
+	/**
+	 * Call the work() function with a button click.
+	 * Hides the button and gives a message to indicate to the user that it has
+	 * been pressed.
+ 	 */
+	$('button').click(function () {
+		$(this).hide();
+		$("div").html("How far can this computer count in 1 second...");
+		setTimeout(work, 50);  // yield, so UI can update with the above text
+	});
+	
+});
+</script>
+</head>
+<body>
+<h1>Infinite Loop</h1>
+<p>
+	This button runs a script that counts, from 0, for 1 second then prints out
+	the final number. However the message to stop counting never arrives thus
+	creating an infinite loop, whereupon the browser becomes unresponsive.
+</p>
+<button>start</button>
+<div>&nbsp;</div>
+</body>
+</html>

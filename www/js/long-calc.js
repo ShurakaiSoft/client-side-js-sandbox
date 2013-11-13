@@ -10,43 +10,6 @@
 (function strict() {
 	"use strict";
 	
-	// demo plugin for jQuery.
-	;(function ($) {
-		if (typeof $.isStrict === 'undefined') {
-			$.isStrict = function () {
-				return (function () { return !this;})();
-			};
-		} else {
-			console.log("isStrict is already defined for jQuery");
-		}
-	})(jQuery);
-	
-	
-	/**
-	 * UI clock element
-	 * 
-	 * It should hang if the event loop is blocked from a long running function.
-	 * 
-	 */
-	function clock($parent) {
-		function update() {
-			var now = new Date();
-			function pad(value) {
-				return (value < 10) ? '0' + value : value;
-			}
-			$parent.html([pad(now.getHours()), pad(now.getMinutes()), pad(now.getSeconds())].join(':'));
-		}
-		
-		if ($parent === null) {
-			console.log("No UI element for clock");
-			return;
-		}
-		
-		(function () {
-			setInterval(update, 100);
-		})();
-	};
-
 	/**
 	 * Timer utility function. Logs run times to console.log 
 	 */
@@ -162,7 +125,7 @@
 	
 	// jQuery "main" function
 	$(function () {
-		clock($('#clock'));
+		window.CLOCK.init($("#clock"));
 		longCalcWidget.init($('#widget1'));
 		
 	});

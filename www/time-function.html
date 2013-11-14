@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="js/timer.js"></script>
+<script>
+
+/**
+ * A function to simulate some work.
+ */
+function doSomeWork(i) {
+	var i = 0;
+	var sizeOfWork = 1000000;	// size depends on client processing speed
+	
+	while (i < sizeOfWork) {
+		i++;
+	}
+	return i;
+}
+
+// use timer to time work done.
+function timeFunction(resultCallback) {
+	TIMER.timefunction(doSomeWork, resultCallback);
+}
+
+// Hide button and shows result.
+function updateUI() {
+	$("button").hide();
+	timeFunction(function (err, result) {
+		if (err) {
+			return; // ignore errors
+		}
+		$("div").html('Function took ' + result + 'ms to run').show();
+	});
+}
+
+// Event handlers.
+function buttonClick() {
+	updateUI();
+}
+
+
+// "main" starts here
+$(function () {    // jQuery page ready event
+	"use strict";
+	$("button").click(buttonClick);
+	$("div").hide();
+});
+</script>
+</head>
+<body>
+	<h1>Time Function</h1>
+	<p>Press the button to calculate the runtime of a function.</p>
+	<button>run me</button>
+	<div>&nbsp;</div>
+</body>
+</html>

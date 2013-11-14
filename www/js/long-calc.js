@@ -11,33 +11,6 @@
 	"use strict";
 	
 	/**
-	 * Timer utility function. Logs run times to console.log 
-	 */
-	function timeMe(func, options) {
-		var start = 0;
-		var rtn = undefined;
-		var elapsedTime = 0;
-		
-		options = options || {};
-		options.title = options.title || 'func';
-		options.logToConsole = options.logToConsole || false;
-		options.resultCallback = options.resultCallback || null;
-		
-		start = Date.now();
-		rtn = func();
-		elapsedTime = Date.now() - start;
-		if (options.logToConsole) {
-			console.log(options.title, ' took: ', elapsedTime, 'ms');
-		}
-		if (options.resultCallback) {
-			options.resultCallback(null, elapsedTime);
-		}
-		return rtn;
-	}
-
-	
-	
-	/**
 	 * An object with a time consuming function.
 	 */
 	var longCalcWidget = (function () {
